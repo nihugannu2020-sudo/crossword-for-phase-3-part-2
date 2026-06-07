@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECT REWIND // MEMORY RECONSTRUCTION</title>
+  <meta name="description" content="Cinematic detective crossword puzzle. Reconstruct forgotten memories from the psychological thriller investigation.">
+  
+  <!-- Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Special Elite (Typewriter), Courier Prime (Monospace), and Playfair Display (Serif Newspaper) -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Special+Elite&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Analog Film Grain / Noise Overlay -->
+  <div class="film-grain"></div>
+
+  <!-- Warm Flickering Spotlight Layer -->
+  <div class="desk-light"></div>
+
+  <!-- Main Detective Desk Workspace -->
+  <main class="desk-container">
+    
+    <!-- Scattered Desk Clutter (Background/Decorative) -->
+    <div class="clutter-photo photo-1" aria-hidden="true">
+      <img src="assets/vintage_photo.png" alt="Vintage photo evidence">
+    </div>
+    
+    <div class="clutter-photo photo-2" aria-hidden="true">
+      <div class="pinned-note">
+        <div class="tape"></div>
+        <p class="handwritten">NODE 01: HEROBRINE<br>NODE 02: VETTEL<br>FIND THE INTERSECTIONS</p>
+      </div>
+    </div>
+    
+    <div class="clutter-folder" aria-hidden="true">
+      <div class="folder-tab">CASE_FILE_S_992</div>
+      <div class="folder-content">
+        <p class="folder-text">CLASSIFIED - DO NOT DISTRIBUTE</p>
+      </div>
+    </div>
+    
+    <div class="clutter-pen" aria-hidden="true">
+      <div class="pen-body"></div>
+      <div class="pen-cap"></div>
+    </div>
+
+    <!-- Realistic CSS-drawn Coffee Mug -->
+    <div class="clutter-coffee-mug" aria-hidden="true">
+      <div class="mug-handle"></div>
+      <div class="mug-body">
+        <div class="coffee-liquid">
+          <div class="coffee-shine"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scattered Underneath Newspaper Sheets -->
+    <div class="background-paper paper-left" aria-hidden="true">
+      <div class="bg-paper-content">
+        <div class="bg-paper-col"></div>
+        <div class="bg-paper-col"></div>
+      </div>
+    </div>
+    <div class="background-paper paper-right" aria-hidden="true">
+      <div class="bg-paper-content">
+        <div class="bg-paper-col"></div>
+        <div class="bg-paper-col"></div>
+      </div>
+    </div>
+
+    <!-- The Old Newspaper Sheet -->
+    <article id="newspaper" class="newspaper-sheet">
+      <!-- Coffee Stain Overlay -->
+      <div class="coffee-stain-overlay" aria-hidden="true"></div>
+      
+      <!-- Paper Clip Clamping the Newspaper -->
+      <div class="paper-clip" aria-hidden="true"></div>
+      
+      <!-- Fold creases (shadows and highlights overlay) -->
+      <div class="paper-crease-h" aria-hidden="true"></div>
+      <div class="paper-crease-v" aria-hidden="true"></div>
+
+      <!-- Newspaper Header -->
+      <header class="newspaper-header">
+        <div class="header-system-labels">
+          <span class="label-flicker">SYSTEM_INTEGRITY_SECURED</span>
+          <span>NODE_01 OK</span>
+          <span>NODE_02 OK</span>
+        </div>
+        
+        <h1 class="newspaper-title">PROJECT REWIND</h1>
+        
+        <div class="newspaper-subtitle-container">
+          <div class="newspaper-edition">NIGHT EDITION &bull; CLASSIFIED</div>
+          <div class="system-version">MEMORY_RECONSTRUCTION_OS_V2.0.1</div>
+          <div class="newspaper-date">JUNE 6, 2026</div>
+        </div>
+        
+        <div class="double-border"></div>
+      </header>
+
+      <!-- Main Newspaper Body (Grid + Clues) -->
+      <div class="newspaper-body">
+        
+        <!-- Left Section: Crossword Puzzle Grid -->
+        <section class="grid-section">
+          <div class="grid-instructions">
+            <span>INSTRUCTIONS: RECONSTRUCT THE CELLS BY ENTERING CORRESPONDING LETTERS.</span>
+          </div>
+          <!-- Crossword Container -->
+          <div id="crossword-grid" class="crossword-grid" role="grid" aria-label="Memory Reconstruction Crossword Grid">
+            <!-- Grid will be generated dynamically by JavaScript -->
+          </div>
+        </section>
+
+        <!-- Right Section: Clues Panel -->
+        <section class="clues-section">
+          <h2 class="clues-title">CLUE DECRYPTION QUEUE</h2>
+          <div class="clues-divider"></div>
+          
+          <div class="clues-container">
+            <!-- Across Clues -->
+            <div class="clues-group">
+              <h3>ACROSS</h3>
+              <ul id="across-clues-list" class="clues-list">
+                <!-- Populated dynamically -->
+              </ul>
+            </div>
+            
+            <!-- Down Clues -->
+            <div class="clues-group">
+              <h3>DOWN</h3>
+              <ul id="down-clues-list" class="clues-list">
+                <!-- Populated dynamically -->
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Bottom Panel (Progress & Submit) -->
+      <footer class="newspaper-footer">
+        <div class="double-border"></div>
+        <div class="footer-controls">
+          <!-- Memory Integrity Progress -->
+          <div class="progress-container">
+            <div class="progress-labels">
+              <span class="progress-title">MEMORY INTEGRITY</span>
+              <span id="progress-percentage" class="progress-percentage">0%</span>
+            </div>
+            <div class="progress-bar-track">
+              <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <button id="submit-reconstruction-btn" class="submit-btn">
+            <span class="btn-glitch-text">SUBMIT RECONSTRUCTION</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <!-- Success Overlay / Popup -->
+  <div id="success-overlay" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <!-- Vintage Case File Manila Folder -->
+    <div class="case-file-dossier">
+      <!-- Folder Tab -->
+      <div class="dossier-tab">CASE_FILE_RESTORED</div>
+      
+      <div class="dossier-content">
+        <!-- Confidential/Restored Rubber Stamp -->
+        <div class="confidential-stamp">RESTORED</div>
+        
+        <!-- Document Header -->
+        <header class="dossier-header">
+          <div class="dossier-meta">
+            <span>MEM_REC // NO_0992</span>
+            <span>DECRYPTION: SUCCESS</span>
+          </div>
+          <h2 id="modal-title" class="dossier-headline">MEMORY RESTORED</h2>
+          <div class="dossier-divider"></div>
+        </header>
+        
+        <!-- Dossier body text -->
+        <p class="dossier-status-text">The fragmented memory nodes have been successfully aligned and verified.</p>
+        
+        <!-- Typed Dossier Records -->
+        <div class="dossier-records">
+          <div class="record-line"><span class="check">[✓]</span> TARGET CONNECTION: STABLE</div>
+          <div class="record-line"><span class="check">[✓]</span> RECONSTRUCTED MEMORY SEGMENTS: SECURE</div>
+          <div class="record-line"><span class="check">[✓]</span> INTEGRITY LEVEL: 100%</div>
+        </div>
+
+        <button id="close-modal-btn" class="dossier-close-btn">DISMISS FILE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
