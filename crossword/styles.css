@@ -1,0 +1,1112 @@
+/* ==========================================================================
+   PROJECT REWIND // DESIGN SYSTEM & STYLING
+   ========================================================================== */
+
+/* 1. Reset & Global Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0b0806;
+  color: #1a1512;
+  font-family: 'Courier Prime', monospace;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 2. Analog Film Grain / Noise Overlay */
+.film-grain {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  /* Inline SVG fractal noise for texture */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3%3Cfilter id='noise'%3%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3%3C/filter%3%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3%3C/svg%3%3E");
+  animation: grainShift 0.15s steps(4) infinite;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes grainShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1%, 2%); }
+  50% { transform: translate(2%, -1%); }
+  75% { transform: translate(-2%, -2%); }
+  100% { transform: translate(1%, 1%); }
+}
+
+/* 3. Warm Flickering Spotlight Layer */
+.desk-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(235, 155, 60, 0.16) 0%,
+    rgba(170, 95, 30, 0.06) 45%,
+    rgba(0, 0, 0, 0.82) 80%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  animation: ambientLampFlicker 8s infinite alternate;
+}
+
+@keyframes ambientLampFlicker {
+  0% {
+    opacity: 0.98;
+    background-size: 100% 100%;
+  }
+  20% {
+    opacity: 1;
+  }
+  20.2% {
+    opacity: 0.96;
+  }
+  20.4% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.99;
+    background-size: 101% 101%;
+  }
+  85% {
+    opacity: 0.97;
+  }
+  85.2% {
+    opacity: 0.95;
+  }
+  85.4% {
+    opacity: 0.98;
+  }
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}
+
+/* 4. Detective Desk Workspace Container */
+.desk-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-image: url('assets/wood_desk.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 5. Desk Clutter (Decorative Elements) */
+.clutter-photo {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+}
+
+.photo-1 {
+  width: 220px;
+  top: 8%;
+  left: 3%;
+  transform: rotate(-14deg);
+  border: 12px solid #eae5db;
+  border-bottom: 35px solid #eae5db;
+  background-color: #000;
+}
+
+.photo-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.6) contrast(1.1) brightness(0.85);
+}
+
+.photo-2 {
+  width: 240px;
+  bottom: 8%;
+  right: 2%;
+  transform: rotate(8deg);
+  z-index: 3;
+}
+
+.pinned-note {
+  background-color: #dfd8be;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  border-left: 2px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  position: relative;
+}
+
+.pinned-note .tape {
+  position: absolute;
+  top: -15px;
+  left: 35%;
+  width: 80px;
+  height: 25px;
+  background-color: rgba(220, 210, 180, 0.45);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transform: rotate(-3deg);
+  border-left: 1px dashed rgba(0,0,0,0.1);
+  border-right: 1px dashed rgba(0,0,0,0.1);
+}
+
+.pinned-note p.handwritten {
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  color: #3e3223;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.clutter-folder {
+  position: absolute;
+  width: 320px;
+  height: 240px;
+  bottom: 6%;
+  left: 2%;
+  background-color: #8b6d4b;
+  border-radius: 4px;
+  transform: rotate(-5deg);
+  z-index: 2;
+  box-shadow: -5px 12px 30px rgba(0,0,0,0.9);
+  padding: 20px;
+  border: 1px solid #73593a;
+}
+
+.folder-tab {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  width: 110px;
+  height: 20px;
+  background-color: #8b6d4b;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  font-size: 8px;
+  font-weight: bold;
+  padding: 4px 10px;
+  color: #382818;
+  border-top: 1px solid #73593a;
+  border-left: 1px solid #73593a;
+}
+
+.folder-content {
+  border: 2px dashed #6b5336;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.folder-text {
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  color: #4b361f;
+  transform: rotate(-10deg);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* Detailed CSS-drawn Pen */
+.clutter-pen {
+  position: absolute;
+  width: 12px;
+  height: 190px;
+  right: 10%;
+  top: 12%;
+  transform: rotate(25deg);
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(8px 8px 5px rgba(0,0,0,0.6));
+}
+
+.pen-body {
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to right, #1a1a1a 0%, #333 50%, #000 100%);
+  border-radius: 2px;
+}
+
+.pen-cap {
+  width: 110%;
+  margin-left: -5%;
+  height: 30%;
+  background: linear-gradient(to right, #2c3e50 0%, #34495e 50%, #1a252f 100%);
+  border-bottom: 2px solid #d4af37;
+  border-radius: 4px 4px 2px 2px;
+  position: relative;
+}
+
+.pen-cap::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 4px;
+  width: 3px;
+  height: 35px;
+  background: #d4af37;
+  border-radius: 1px;
+}
+
+/* Realistic Coffee Mug styling */
+.clutter-coffee-mug {
+  position: absolute;
+  top: 8%;
+  right: 5%;
+  width: 130px;
+  height: 130px;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(10px 15px 12px rgba(0, 0, 0, 0.75));
+}
+
+.mug-body {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 35% 35%, #5a4b41 0%, #2f251f 70%, #17110e 100%);
+  border: 8px solid #eae5db;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
+}
+
+.coffee-liquid {
+  width: 76px;
+  height: 76px;
+  background: radial-gradient(circle at 30% 30%, #4a2e1b 0%, #29180d 60%, #130a05 100%);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
+}
+
+.coffee-shine {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 25px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.mug-handle {
+  position: absolute;
+  top: 30px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 8px solid #eae5db;
+  border-left-color: transparent;
+  border-radius: 50%;
+  transform: rotate(35deg);
+}
+
+/* Scattered Underneath Newspaper Sheets Styling */
+.background-paper {
+  position: absolute;
+  background-color: #cabfa1;
+  background-image: url('assets/aged_newspaper.png');
+  background-size: cover;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.85);
+  border: 1px solid rgba(0,0,0,0.2);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.paper-left {
+  width: 800px;
+  height: 600px;
+  top: 15%;
+  left: -10%;
+  transform: rotate(-8deg);
+  z-index: 2;
+}
+
+.paper-right {
+  width: 750px;
+  height: 550px;
+  bottom: 10%;
+  right: -8%;
+  transform: rotate(12deg);
+  z-index: 2;
+}
+
+.bg-paper-content {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: 100%;
+  opacity: 0.25;
+}
+
+.bg-paper-col {
+  border-right: 1px solid #000;
+  height: 100%;
+}
+.bg-paper-col:last-child {
+  border-right: none;
+}
+
+/* 6. Physical Newspaper Sheet */
+.newspaper-sheet {
+  width: 100%;
+  max-width: 1060px;
+  background-color: #dfd7c0;
+  background-image: url('assets/aged_newspaper.png');
+  background-size: cover;
+  background-position: center;
+  padding: 40px;
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.75),
+    0 35px 70px rgba(0,0,0,0.85);
+  border: 1px solid rgba(0,0,0,0.15);
+  transform: rotate(-1deg);
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Coffee Stain Layer */
+.coffee-stain-overlay {
+  position: absolute;
+  top: 35%;
+  left: 55%;
+  width: 250px;
+  height: 250px;
+  background-image: url('assets/coffee_stain.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 6;
+  transform: rotate(42deg);
+}
+
+/* Paper Crease overlays */
+.paper-crease-h {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.paper-crease-v {
+  position: absolute;
+  top: 0;
+  left: 48%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(255,255,255,0.07) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* Metal Paper Clip */
+.paper-clip {
+  position: absolute;
+  top: -15px;
+  left: 60%;
+  width: 22px;
+  height: 70px;
+  border: 3px solid #7f8c8d;
+  border-radius: 10px;
+  z-index: 8;
+  transform: rotate(-5deg);
+  box-shadow: 2px 5px 6px rgba(0,0,0,0.4);
+  background: transparent;
+  pointer-events: none;
+}
+
+.paper-clip::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 2px;
+  width: 12px;
+  height: 45px;
+  border: 3px solid #7f8c8d;
+  border-radius: 8px;
+  border-bottom: none;
+}
+
+/* 7. Newspaper Header */
+.newspaper-header {
+  width: 100%;
+  margin-bottom: 25px;
+  background-color: #ede7d5; /* Solid aged-paper cover to mask the image heading */
+  border: 3px double #1a1512;
+  padding: 16px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+  z-index: 10;
+}
+
+.header-system-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #383129;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  padding-bottom: 6px;
+}
+
+.label-flicker {
+  animation: txtFlicker 6s infinite;
+}
+
+@keyframes txtFlicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 1; }
+  45.5% { opacity: 0.3; }
+  45.7% { opacity: 1; }
+  82% { opacity: 1; }
+  82.2% { opacity: 0.1; }
+  82.4% { opacity: 0.7; }
+  82.6% { opacity: 1; }
+}
+
+.newspaper-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 56px; /* slightly reduced */
+  text-align: center;
+  letter-spacing: 4px;
+  color: #1a1512;
+  line-height: 1.1;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+
+.newspaper-subtitle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: #2b241e;
+  border-top: 2px solid #1a1512;
+  border-bottom: 2px solid #1a1512;
+  padding: 8px 4px;
+  margin-bottom: 4px;
+}
+
+.system-version {
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.double-border {
+  height: 5px;
+  border-top: 1px solid #1a1512;
+  border-bottom: 2px solid #1a1512;
+  width: 100%;
+}
+
+/* 8. Newspaper Body (Grid & Clues Layout) */
+.newspaper-body {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 35px;
+  margin-top: 25px;
+  position: relative;
+  z-index: 9;
+}
+
+/* 9. Crossword Grid Section */
+.grid-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #ede7d5; /* clean, high-contrast backing paper */
+  border: 2px solid #1a1512;
+  border-radius: 4px;
+  padding: 24px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), inset 0 0 30px rgba(0, 0, 0, 0.05);
+}
+
+.grid-instructions {
+  font-size: 9px;
+  color: #4a3e35;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+
+.crossword-grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: repeat(15, minmax(0, 1fr));
+  gap: 1.5px;
+  background-color: #2b241e;
+  border: 3px solid #1a1512;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+  padding: 1px;
+  width: 100%;
+}
+
+/* Grid Cell Styles */
+.grid-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  min-width: 0; /* Prevent cells from extending outside boundaries */
+  background-color: #1c1815; /* Empty/Black block cells */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Active input cells */
+.grid-cell.cell-active {
+  background-color: #fcf9f2;
+  background-image: radial-gradient(circle, transparent 70%, rgba(0,0,0,0.02) 100%);
+  border: 1px solid rgba(0,0,0,0.18);
+  cursor: text;
+}
+
+.grid-cell.cell-active:hover {
+  background-color: #ffffff;
+  box-shadow: inset 0 0 4px rgba(235, 155, 60, 0.2);
+}
+
+.grid-cell.cell-active.cell-focused {
+  background-color: #fffaeb;
+  border: 1.5px solid #6b5a4b;
+  box-shadow: inset 0 0 6px rgba(235, 155, 60, 0.4);
+}
+
+.grid-cell.cell-active.word-highlighted {
+  background-color: #f6ebd1;
+}
+
+/* Cell Number labels */
+.cell-number {
+  position: absolute;
+  top: 1.5px;
+  left: 2px;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: bold;
+  color: #40362c;
+  pointer-events: none;
+}
+
+/* Letter Input fields */
+.cell-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #1c1815;
+  text-transform: uppercase;
+  caret-color: transparent; /* Hide browser blink cursor for retro feel */
+  padding: 8px 0 0 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cell-input:focus {
+  outline: none;
+}
+
+/* Correct/Incorrect animation states */
+.grid-cell.cell-active.cell-validated-correct {
+  animation: cellSuccessFlash 0.6s ease;
+}
+
+@keyframes cellSuccessFlash {
+  0% { background-color: #fcf9f2; }
+  50% { background-color: #a3ccbc; }
+  100% { background-color: #fcf9f2; }
+}
+
+/* Yellow marker highlight for special decoded letters */
+.grid-cell.cell-active.cell-special-highlight {
+  background-color: rgba(244, 208, 63, 0.42) !important;
+  box-shadow: inset 0 0 8px rgba(244, 208, 63, 0.6) !important;
+  border: 1.5px solid rgba(204, 154, 6, 0.85) !important;
+  transition: all 0.5s ease-in-out;
+}
+
+/* 10. Clues Queue Section */
+.clues-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #ede7d5; /* clean, high-contrast backing paper */
+  border: 2px solid #1a1512;
+  border-radius: 4px;
+  padding: 24px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), inset 0 0 30px rgba(0, 0, 0, 0.05);
+}
+
+.clues-title {
+  font-family: 'Special Elite', cursive;
+  font-size: 20px;
+  color: #1a1512;
+  letter-spacing: 1px;
+}
+
+.clues-divider {
+  height: 2px;
+  background-color: #1a1512;
+  margin: 8px 0 16px;
+}
+
+.clues-container {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.05);
+}
+
+/* Scrollbar styles matching the retro paper */
+.clues-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.clues-container::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 3px;
+}
+
+.clues-container::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.clues-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.35);
+}
+
+.clues-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.clues-group h3 {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 1.5px solid #1a1512;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.clues-list {
+  list-style: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 8px;
+}
+
+.clue-item {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a1512;
+  padding: 10px 14px;
+  border-radius: 4px;
+  background: rgba(244, 208, 63, 0.18);
+  border-left: 4px solid rgba(204, 154, 6, 0.55);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.clue-number {
+  font-weight: bold;
+  margin-right: 6px;
+  min-width: 20px;
+}
+
+.clue-text {
+  flex: 1;
+}
+
+.clue-item:hover {
+  background: rgba(244, 208, 63, 0.28);
+  border-left-color: rgba(204, 154, 6, 0.85);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Highlighted clue state when cell is focused - styled like a vibrant marker with red crimson active margin */
+.clue-item.clue-active {
+  background: rgba(244, 208, 63, 0.42);
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-left: 5px solid #a82d2d; /* Crimson red margin bracket */
+  border-radius: 4px;
+  transform: translateX(6px); /* nudge out to denote current focus */
+}
+
+/* Solved clue state - styled like a hand-drawn red grease pencil strike-through line */
+.clue-item.clue-solved {
+  color: #5d5045;
+  opacity: 0.55;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-left-color: rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(
+    transparent 47%,
+    rgba(168, 45, 45, 0.7) 48%,
+    rgba(168, 45, 45, 0.85) 50%,
+    rgba(168, 45, 45, 0.7) 52%,
+    transparent 53%
+  );
+  text-decoration: none;
+}
+
+/* 11. Footer Controls & Progress */
+.newspaper-footer {
+  margin-top: 30px;
+}
+
+.footer-controls {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 30px;
+  align-items: center;
+  padding-top: 15px;
+}
+
+/* Memory Integrity Progress Bar */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Special Elite', cursive;
+  font-size: 12px;
+  font-weight: bold;
+  color: #2b241e;
+  margin-bottom: 8px;
+}
+
+.progress-bar-track {
+  height: 20px;
+  background-color: #231c18;
+  border: 2px solid #1a1512;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+  padding: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(
+    45deg,
+    #0f6d62,
+    #0f6d62 8px,
+    #138b7d 8px,
+    #138b7d 16px
+  );
+  border-right: 2px solid #231c18;
+  box-shadow: 0 0 8px rgba(19, 139, 125, 0.4);
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Submit Reconstruction Button */
+.submit-btn {
+  width: 100%;
+  height: 48px;
+  background-color: #1a1512;
+  color: #dfd7c0;
+  border: 2px solid #3c322a;
+  font-family: 'Special Elite', cursive;
+  font-size: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.submit-btn:hover {
+  background-color: #2b221d;
+  border-color: #5c4e43;
+  color: #fff9e6;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.submit-btn:focus {
+  outline: none;
+}
+
+/* 12. Success Popup (CRT Terminal Screen) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.93);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 12. Success Popup (Vintage Case File Manila Folder) */
+.case-file-dossier {
+  background-color: #ebdcb9;
+  background-image: url('assets/aged_newspaper.png');
+  background-size: cover;
+  border: 2px solid #5a4225;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 520px;
+  padding: 40px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transform: rotate(-1deg);
+  font-family: 'Special Elite', cursive;
+  color: #382818;
+  animation: dossierSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes dossierSlideIn {
+  0% { transform: translateY(30px) rotate(-3deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(-1deg); opacity: 1; }
+}
+
+.dossier-tab {
+  position: absolute;
+  top: -24px;
+  left: 20px;
+  background-color: #ebdcb9;
+  background-image: url('assets/aged_newspaper.png');
+  background-size: cover;
+  border-top: 2px solid #5a4225;
+  border-left: 2px solid #5a4225;
+  border-right: 2px solid #5a4225;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #4b361f;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
+}
+
+.confidential-stamp {
+  border: 3px double #a82d2d;
+  color: #a82d2d;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  transform: rotate(-12deg);
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+  font-family: 'Special Elite', cursive;
+}
+
+.dossier-header {
+  margin-bottom: 25px;
+}
+
+.dossier-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #6b5336;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed rgba(0,0,0,0.15);
+  padding-bottom: 6px;
+}
+
+.dossier-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #1a1512;
+  font-weight: bold;
+}
+
+.dossier-divider {
+  height: 2px;
+  background-color: #382818;
+  margin-top: 6px;
+}
+
+.dossier-status-text {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: #3e3223;
+}
+
+.dossier-records {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px dashed rgba(0,0,0,0.2);
+  padding: 15px 20px;
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+
+.record-line {
+  font-size: 13px;
+  line-height: 1.8;
+  display: flex;
+  align-items: center;
+  color: #2b2015;
+  margin-bottom: 8px;
+}
+
+.record-line:last-child {
+  margin-bottom: 0;
+}
+
+.record-line .check {
+  color: #2e7d32;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.dossier-close-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #382818;
+  color: #dfd7c0;
+  border: 1px solid #1a1512;
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dossier-close-btn:hover {
+  background-color: #4e3822;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.dossier-close-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 13. Responsive Adaptations */
+@media (max-width: 992px) {
+  .newspaper-body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .clues-section {
+    border: 2px solid #1a1512;
+    padding: 24px;
+  }
+  
+  .footer-controls {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .clutter-photo, .clutter-folder, .clutter-pen {
+    display: none; /* Hide background clutter on smaller screens for layout comfort */
+  }
+}
+
+@media (max-width: 600px) {
+  .newspaper-sheet {
+    padding: 20px 15px;
+  }
+  
+  .newspaper-title {
+    font-size: 40px;
+  }
+  
+  .crossword-grid {
+    gap: 1px;
+  }
+  
+  .cell-input {
+    font-size: 12px;
+    padding: 3px 0 0 0;
+  }
+  
+  .cell-number {
+    font-size: 6px;
+  }
+}
+
+/* 14. Shake Animation for Validation Failures */
+.shake-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(-1deg) translate(0, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: rotate(-1deg) translate(-6px, 2px); }
+  20%, 40%, 60%, 80% { transform: rotate(-1deg) translate(6px, -2px); }
+}
