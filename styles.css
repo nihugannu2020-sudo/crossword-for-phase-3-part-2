@@ -102,7 +102,7 @@ body {
   width: 100%;
   min-height: 100vh;
   padding: 40px 20px;
-  background-image: url('assets/wood_desk.png');
+  background-image: url('assets/wood_desk.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -328,7 +328,7 @@ body {
 .background-paper {
   position: absolute;
   background-color: #cabfa1;
-  background-image: url('assets/aged_newspaper.png');
+  background-image: url('assets/aged_newspaper.svg');
   background-size: cover;
   box-shadow: 0 5px 20px rgba(0,0,0,0.85);
   border: 1px solid rgba(0,0,0,0.2);
@@ -376,7 +376,7 @@ body {
   width: 100%;
   max-width: 1060px;
   background-color: #dfd7c0;
-  background-image: url('assets/aged_newspaper.png');
+  background-image: url('assets/aged_newspaper.svg');
   background-size: cover;
   background-position: center;
   padding: 40px;
@@ -398,7 +398,7 @@ body {
   left: 55%;
   width: 250px;
   height: 250px;
-  background-image: url('assets/coffee_stain.png');
+  background-image: url('assets/coffee_stain.svg');
   background-size: contain;
   background-repeat: no-repeat;
   mix-blend-mode: multiply;
@@ -906,7 +906,7 @@ body {
 /* 12. Success Popup (Vintage Case File Manila Folder) */
 .case-file-dossier {
   background-color: #ebdcb9;
-  background-image: url('assets/aged_newspaper.png');
+  background-image: url('assets/aged_newspaper.svg');
   background-size: cover;
   border: 2px solid #5a4225;
   border-radius: 4px;
@@ -933,7 +933,7 @@ body {
   top: -24px;
   left: 20px;
   background-color: #ebdcb9;
-  background-image: url('assets/aged_newspaper.png');
+  background-image: url('assets/aged_newspaper.svg');
   background-size: cover;
   border-top: 2px solid #5a4225;
   border-left: 2px solid #5a4225;

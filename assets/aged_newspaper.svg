@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#f5eccd" />
+      <stop offset="60%" stop-color="#dfd3af" />
+      <stop offset="100%" stop-color="#cab890" />
+    </radialGradient>
+    <filter id="paper-texture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+      <feDiffuseLighting in="noise" lighting-color="#fff" surfaceScale="2" result="light">
+        <feDistantLight azimuth="45" elevation="60" />
+      </feDiffuseLighting>
+      <feBlend mode="multiply" in="SourceGraphic" in2="light" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#vignette)" filter="url(#paper-texture)" opacity="0.85"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="1" />
+    </filter>
+  </defs>
+  <!-- Outer ring -->
+  <path d="M 100,20 C 130,20 170,40 175,90 C 180,140 140,175 100,175 C 50,175 25,130 25,90 C 25,50 60,20 100,20 Z" 
+        fill="none" stroke="#5c3d24" stroke-width="6" stroke-linecap="round" opacity="0.3" filter="url(#blur)"/>
+  <!-- Secondary inner outline for ring deposit -->
+  <path d="M 98,25 C 125,25 165,43 170,88 C 175,135 138,170 98,170 C 52,170 28,128 28,88 C 28,52 62,25 98,25 Z" 
+        fill="none" stroke="#482f1b" stroke-width="2.5" stroke-linecap="round" opacity="0.4" filter="url(#blur)"/>
+  <!-- Coffee splatters -->
+  <circle cx="140" cy="50" r="3" fill="#5c3d24" opacity="0.35"/>
+  <circle cx="155" cy="65" r="1.5" fill="#5c3d24" opacity="0.35"/>
+  <circle cx="60" cy="150" r="4.5" fill="#5c3d24" opacity="0.25"/>
+  <circle cx="45" cy="130" r="2" fill="#5c3d24" opacity="0.35"/>
+</svg>

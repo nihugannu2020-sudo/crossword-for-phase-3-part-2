@@ -2,13 +2,16 @@
 // PROJECT REWIND // INTERACTIVE LOGIC
 // ==========================================================================
 
+(function() {
+
 // 1. Crossword Configuration
 const GRID_COLS = 10;
 const GRID_ROWS = 15;
+const SECURE_KEY = "PROJECT_REWIND_KEY_2026";
 
 const WORDS = [
   {
-    word: "AMARILLO",
+    word: "111f0e180c0f1810", // AMARILLO
     x: 2,
     y: 3,
     dir: "H",
@@ -16,7 +19,7 @@ const WORDS = [
     clue: "Years later, among signatures and farewells, one name still survived the fading memories."
   },
   {
-    word: "STINKYSAM",
+    word: "030606040e1a071e1f", // STINKYSAM
     x: 1,
     y: 11,
     dir: "H",
@@ -24,7 +27,7 @@ const WORDS = [
     clue: "A harmless name slowly turned unpleasant after one unforgettable incident followed Sam through the corridors."
   },
   {
-    word: "HEROBRINE",
+    word: "18171d0507111d1117", // HEROBRINE
     x: 1,
     y: 13,
     dir: "H",
@@ -32,7 +35,7 @@ const WORDS = [
     clue: "A mysterious figure kept appearing in Sam’s saved game worlds. Even when Sam played alone, someone else seemed to exist in the world. Who was it?"
   },
   {
-    word: "STANFORD",
+    word: "03060e04030c061b", // STANFORD
     x: 0,
     y: 7,
     dir: "H",
@@ -40,7 +43,7 @@ const WORDS = [
     clue: "One name appeared repeatedly between application drafts, highlighted notes, and sleepless ambitions."
   },
   {
-    word: "SEBASTIANVETTEL",
+    word: "03170d0b16171d1e1c13121d1a0113", // SEBASTIANVETTEL
     x: 2,
     y: 0,
     dir: "V",
@@ -48,7 +51,7 @@ const WORDS = [
     clue: "Speed fascinated Sam, but one champion from 2010 remained unmatched in his memories."
   },
   {
-    word: "SOCCER",
+    word: "031d0c090011", // SOCCER
     x: 9,
     y: 2,
     dir: "V",
@@ -56,7 +59,7 @@ const WORDS = [
     clue: "Whatever Sam chased every weekend returned home covered in more mud than he did."
   },
   {
-    word: "IELTS",
+    word: "1917031e16", // IELTS
     x: 7,
     y: 1,
     dir: "V",
@@ -64,7 +67,7 @@ const WORDS = [
     clue: "Among practice sheets and distant ambitions, one unfinished goal remained on Sam’s desk."
   },
   {
-    word: "CORGI",
+    word: "131d1d0d0c", // CORGI
     x: 5,
     y: 1,
     dir: "V",
@@ -72,6 +75,16 @@ const WORDS = [
     clue: "A breed with a pair of pointed ears and tiny footsteps quietly became part of Sam’s happiest memories."
   }
 ];
+
+function decryptWord(hexStr) {
+  let decrypted = "";
+  for (let i = 0; i < hexStr.length; i += 2) {
+    const byte = parseInt(hexStr.substr(i, 2), 16);
+    const keyChar = SECURE_KEY.charCodeAt((i / 2) % SECURE_KEY.length);
+    decrypted += String.fromCharCode(byte ^ keyChar);
+  }
+  return decrypted.toUpperCase();
+}
 
 // Grid cells data state
 let cellStateMap = {};
@@ -141,6 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Build coordinate-based cell map
 function buildGridData() {
+  // Decrypt words at runtime
+  WORDS.forEach((w) => {
+    w.word = decryptWord(w.word);
+  });
+
   for (let r = 0; r < GRID_ROWS; r++) {
     for (let c = 0; c < GRID_COLS; c++) {
       cellStateMap[`${r}_${c}`] = {
@@ -273,6 +291,9 @@ function setupEventListeners() {
 
       highlightWord(row, col, dirToUse);
       playFocusSound();
+
+      // Auto-select text on focus to allow easy typing overwrite
+      setTimeout(() => e.target.select(), 10);
     });
 
     // Keydown handler (for arrows, backspace, and navigation)
@@ -605,3 +626,5 @@ function highlightSpecialSecretCells() {
     }
   });
 }
+
+})();

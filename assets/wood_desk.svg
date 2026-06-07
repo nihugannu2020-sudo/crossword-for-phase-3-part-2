@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c110a" />
+      <stop offset="50%" stop-color="#2c1a11" />
+      <stop offset="100%" stop-color="#120a06" />
+    </linearGradient>
+    <pattern id="grain" width="400" height="200" patternUnits="userSpaceOnUse">
+      <rect width="400" height="200" fill="url(#wood)" />
+      <!-- Horizontal planks -->
+      <line x1="0" y1="50" x2="400" y2="50" stroke="#0f0906" stroke-width="2" opacity="0.5"/>
+      <line x1="0" y1="100" x2="400" y2="100" stroke="#0f0906" stroke-width="2" opacity="0.5"/>
+      <line x1="0" y1="150" x2="400" y2="150" stroke="#0f0906" stroke-width="2" opacity="0.5"/>
+      <!-- Subtle wood grain lines -->
+      <path d="M 0,25 Q 100,30 200,22 T 400,28" fill="none" stroke="#3d2518" stroke-width="1.5" opacity="0.2"/>
+      <path d="M 0,75 Q 150,65 300,80 T 400,70" fill="none" stroke="#3d2518" stroke-width="1" opacity="0.15"/>
+      <path d="M 0,125 Q 80,130 180,120 T 400,128" fill="none" stroke="#3d2518" stroke-width="1.5" opacity="0.2"/>
+      <path d="M 0,175 Q 220,185 320,170 T 400,178" fill="none" stroke="#3d2518" stroke-width="1" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grain)" />
+</svg>
