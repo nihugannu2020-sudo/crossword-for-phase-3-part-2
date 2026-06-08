@@ -11,7 +11,7 @@ const SECURE_KEY = "PROJECT_REWIND_KEY_2026";
 
 const WORDS = [
   {
-    word: "111f0e180c0f1810", // AMARILLO
+    word: "111f0e180c0f1810",
     x: 2,
     y: 3,
     dir: "H",
@@ -19,7 +19,7 @@ const WORDS = [
     clue: "Years later, among signatures and farewells, one name still survived the fading memories."
   },
   {
-    word: "030606040e1a071e1f", // STINKYSAM
+    word: "030606040e1a071e1f", 
     x: 1,
     y: 11,
     dir: "H",
@@ -27,7 +27,7 @@ const WORDS = [
     clue: "A harmless name slowly turned unpleasant after one unforgettable incident followed Sam through the corridors."
   },
   {
-    word: "18171d0507111d1117", // HEROBRINE
+    word: "18171d0507111d1117", 
     x: 1,
     y: 13,
     dir: "H",
@@ -35,7 +35,7 @@ const WORDS = [
     clue: "A mysterious figure kept appearing in Sam’s saved game worlds. Even when Sam played alone, someone else seemed to exist in the world. Who was it?"
   },
   {
-    word: "03060e04030c061b", // STANFORD
+    word: "03060e04030c061b", 
     x: 0,
     y: 7,
     dir: "H",
@@ -43,7 +43,7 @@ const WORDS = [
     clue: "One name appeared repeatedly between application drafts, highlighted notes, and sleepless ambitions."
   },
   {
-    word: "03170d0b16171d1e1c13121d1a0113", // SEBASTIANVETTEL
+    word: "03170d0b16171d1e1c13121d1a0113", 
     x: 2,
     y: 0,
     dir: "V",
@@ -51,7 +51,7 @@ const WORDS = [
     clue: "Speed fascinated Sam, but one champion from 2010 remained unmatched in his memories."
   },
   {
-    word: "031d0c090011", // SOCCER
+    word: "031d0c090011", 
     x: 9,
     y: 2,
     dir: "V",
@@ -59,7 +59,7 @@ const WORDS = [
     clue: "Whatever Sam chased every weekend returned home covered in more mud than he did."
   },
   {
-    word: "1917031e16", // IELTS
+    word: "1917031e16", 
     x: 7,
     y: 1,
     dir: "V",
@@ -67,7 +67,7 @@ const WORDS = [
     clue: "Among practice sheets and distant ambitions, one unfinished goal remained on Sam’s desk."
   },
   {
-    word: "131d1d0d0c", // CORGI
+    word: "131d1d0d0c",
     x: 5,
     y: 1,
     dir: "V",
@@ -607,16 +607,16 @@ function validateReconstruction() {
 // Highlight the special letters spelling the secret code
 function highlightSpecialSecretCells() {
   const specialCells = [
-    { r: 1, c: 2 },  // E in sebastianvettel
-    { r: 5, c: 2 },  // T in sebastianvettel
-    { r: 9, c: 2 },  // V in sebastianvettel
-    { r: 7, c: 3 },  // N from stanford
-    { r: 11, c: 8 }, // A from stinkysam
-    { r: 13, c: 5 }, // B from herobrine
-    { r: 6, c: 9 },  // E from soccer
-    { r: 1, c: 7 },  // I from ielts
-    { r: 3, c: 7 },  // L from ielts
-    { r: 5, c: 5 }   // I from corgi
+    { r: 1, c: 2 },  
+    { r: 5, c: 2 }, 
+    { r: 9, c: 2 }, 
+    { r: 7, c: 3 },  
+    { r: 11, c: 8 }, 
+    { r: 13, c: 5 }, 
+    { r: 6, c: 9 },  
+    { r: 1, c: 7 },  
+    { r: 3, c: 7 }, 
+    { r: 5, c: 5 }   
   ];
 
   specialCells.forEach(cell => {
