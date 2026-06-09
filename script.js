@@ -388,7 +388,15 @@ function highlightWord(row, col, dir) {
     const clueEl = document.getElementById(`clue-${w.number}`);
     if (clueEl) {
       clueEl.classList.add("clue-active");
-      clueEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      const container = document.querySelector('.clues-container');
+      if (container) {
+        const parentRect = container.getBoundingClientRect();
+        const childRect = clueEl.getBoundingClientRect();
+        const isVisible = (childRect.top >= parentRect.top && childRect.bottom <= parentRect.bottom);
+        if (!isVisible && container.scrollHeight > parentRect.height) {
+          container.scrollTop = (clueEl.offsetTop - container.offsetTop) - (parentRect.height / 2) + (childRect.height / 2);
+        }
+      }
     }
   }
 }
